@@ -84,7 +84,6 @@ class Ticket:
             return await self.save(entity)
 
     async def save(self, entity: Model):
-        print("Here to save")
         col = self.db[self.COLLECTION]
         result = col.insert_one(entity.as_dict())
         return result
