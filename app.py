@@ -52,7 +52,7 @@ async def get_ticket(request) -> web.Response:
 
 
 async def init_app(loop) -> web.Application:
-    app = web.Application(loop=loop, middlewares=[db_handler])
+    app = web.Application(loop=loop, middlewares=[db_handler, bot_handler])
 
     app.add_routes(routes)
 
