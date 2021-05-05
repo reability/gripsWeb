@@ -2,6 +2,6 @@ from aiohttp import web
 import app
 
 if __name__ == '__main__':
-    app = await app.init_app()
+    application = app.init_app()
 
-    web.run_app(app, host="0.0.0.0", port=8080)
+    web.run_app(application, host="0.0.0.0", port=8080)
