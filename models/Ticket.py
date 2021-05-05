@@ -71,7 +71,7 @@ class Ticket:
             return []
 
     async def read_all_(self, count: int):
-        result = await self.collection.find({})
+        result = self.collection.find({})
         if result:
             return result.to_list(length=count)
         else:
@@ -82,8 +82,11 @@ class Ticket:
             return await self.save(entity)
 
     async def save(self, entity: Model):
-        result = await self.collection.insert_one(entity.as_dict())
-        return result
+        try:
+            result = await self.collection.insert_one(entity.as_dict())
+        except:
+            print("Failed to save")
+        return True
 
     async def exist(self, ticket_id: int) -> bool:
         result = await self.collection.find_one({Ticket.Model.TICKET_ID: ticket_id})

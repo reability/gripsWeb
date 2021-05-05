@@ -24,7 +24,7 @@ async def post_ticket(request) -> web.Response:
         ticket = Ticket(request.db)
         exist = await ticket.exist(model.ticket_id)
         if exist:
-            web.Response(text="Already here", status=201)
+            return web.Response(text="Already here", status=201)
         else:
             result = await ticket.save(model)
             if result:
