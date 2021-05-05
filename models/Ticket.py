@@ -84,7 +84,7 @@ class Ticket:
     async def save(self, entity: Model):
         print("Here to save")
         try:
-            result = await self.collection.insert_one(entity.as_dict())
+            self.collection.insert_one(entity.as_dict())
         except:
             print("Failed to save")
         return True
