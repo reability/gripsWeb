@@ -93,8 +93,6 @@ class Ticket:
         col = self.db[self.COLLECTION]
         result = await col.find_one({Ticket.Model.TICKET_ID: ticket_id})
         if result:
-            print("Return true")
             return True
         else:
-            print("Return false")
             return False
