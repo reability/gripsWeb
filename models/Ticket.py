@@ -38,11 +38,31 @@ class Ticket:
         @staticmethod
         def from_dict(dictionary):
             try:
-                _ticket_id = dictionary[Ticket.Model.TICKET_ID]
-                _title = dictionary[Ticket.Model.TITLE]
-                _description = dictionary[Ticket.Model.DESCRIPTION]
-                _original_url = dictionary[Ticket.Model.ORIGINAL_URL]
-                _post_date = dictionary[Ticket.Model.POST_DATE]
+                try:
+                    _ticket_id = dictionary[Ticket.Model.TICKET_ID]
+                except:
+                    print("ticket")
+                    return None
+                try:
+                    _title = dictionary[Ticket.Model.TITLE]
+                except:
+                    print("title")
+                    return None
+                try:
+                    _description = dictionary[Ticket.Model.DESCRIPTION]
+                except:
+                    print("desct")
+                    return None
+                try:
+                    _original_url = dictionary[Ticket.Model.ORIGINAL_URL]
+                except:
+                    print("turlt")
+                    return None
+                try:
+                    _post_date = dictionary[Ticket.Model.POST_DATE]
+                except:
+                    print("date")
+                    return None
 
                 return Ticket.Model(_ticket_id, _title, _description, _original_url, _post_date)
             except KeyError:
