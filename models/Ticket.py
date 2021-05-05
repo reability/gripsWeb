@@ -57,21 +57,23 @@ class Ticket:
                 return None
 
     def __init__(self, db):
-        self.collection = db[Ticket.COLLECTION]
+        self.db = db
 
     @staticmethod
     def model(json):
         return Ticket.Model.from_dict(json)
 
     async def read_all_after(self, date: int):
-        result = await self.collection.find({Ticket.Model.POST_DATE: {'$gte': date}})
+        col = self.db[self.COLLECTION]
+        result = await col.find({Ticket.Model.POST_DATE: {'$gte': date}})
         if result:
             return await result.to_list(length=100)
         else:
             return []
 
     async def read_all_(self, count: int):
-        result = self.collection.find({})
+        col = self.db[self.COLLECTION]
+        result = col.find({})
         if result:
             return result.to_list(length=count)
         else:
@@ -83,14 +85,13 @@ class Ticket:
 
     async def save(self, entity: Model):
         print("Here to save")
-        try:
-            self.collection.insert_one(entity.as_dict())
-        except:
-            print("Failed to save")
+        col = self.db[self.COLLECTION]
+        result = col.insert_one(entity.as_dict())
         return True
 
     async def exist(self, ticket_id: int) -> bool:
-        result = await self.collection.find_one({Ticket.Model.TICKET_ID: ticket_id})
+        col = self.db[self.COLLECTION]
+        result = await col.find_one({Ticket.Model.TICKET_ID: ticket_id})
         if result:
             print("Return true")
             return True
