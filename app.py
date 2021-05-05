@@ -26,7 +26,11 @@ async def post_ticket(request) -> web.Response:
         if exist:
             return web.Response(text="Already here", status=201)
         else:
-            result = await ticket.save(model)
+            try:
+                result = await ticket.save(model)
+            except:
+                print("An exeption")
+            result = True
             if result:
                 message_to_send = TMessage.init_from(model)
                 if not request.tg_bot.send(message_to_send):
