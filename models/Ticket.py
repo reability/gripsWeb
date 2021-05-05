@@ -82,6 +82,7 @@ class Ticket:
             return await self.save(entity)
 
     async def save(self, entity: Model):
+        print("Here to save")
         try:
             result = await self.collection.insert_one(entity.as_dict())
         except:
@@ -91,6 +92,8 @@ class Ticket:
     async def exist(self, ticket_id: int) -> bool:
         result = await self.collection.find_one({Ticket.Model.TICKET_ID: ticket_id})
         if result:
+            print("Return true")
             return True
         else:
+            print("Return false")
             return False
