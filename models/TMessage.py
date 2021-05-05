@@ -11,11 +11,6 @@ class TMessage:
 
     @staticmethod
     def init_from(ticket_model: Ticket.Model):
-        print("---*__-")
-        print(ticket_model)
-        print(ticket_model.description)
-        print(ticket_model.title)
-        print(ticket_model.post_date)
         return TMessage(title=ticket_model.title, description=TMessage._description_for(ticket_model))
 
     @staticmethod
