@@ -26,7 +26,7 @@ async def post_ticket(request) -> web.Response:
         if exist:
             web.Response(text="Already here", status=201)
         else:
-            result = ticket.save(model)
+            result = await ticket.save(model)
             if result:
                 message_to_send = TMessage.init_from(model)
                 if not request.tg_bot.send(message_to_send):
@@ -39,7 +39,7 @@ async def post_ticket(request) -> web.Response:
 
 
 @routes.get('/ticket')
-async def post_ticket(request) -> web.Response:
+async def get_ticket(request) -> web.Response:
     ticket = Ticket(request.db)
 
     result = await ticket.read_all_(count=100)

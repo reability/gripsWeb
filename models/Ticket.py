@@ -82,7 +82,7 @@ class Ticket:
             return await self.save(entity)
 
     async def save(self, entity: Model):
-        result = await self.collection.insert(entity.as_dict())
+        result = await self.collection.insert_one(entity.as_dict())
         return result
 
     async def exist(self, ticket_id: int) -> bool:
