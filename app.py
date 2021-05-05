@@ -51,8 +51,8 @@ async def get_ticket(request) -> web.Response:
         return web.Response(text="Success", status=200)
 
 
-async def init_app(loop) -> web.Application:
-    app = web.Application(loop=loop, middlewares=[db_handler, bot_handler])
+async def init_app() -> web.Application:
+    app = web.Application(middlewares=[db_handler, bot_handler])
 
     app.add_routes(routes)
 
