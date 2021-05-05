@@ -86,11 +86,10 @@ class Ticket:
     async def save(self, entity: Model):
         print("Here to save")
         col = self.db[self.COLLECTION]
-        result = col.insert(entity.as_dict())
-        return True
+        result = col.insert_one(entity.as_dict())
+        return result
 
     async def exist(self, ticket_id: int) -> bool:
-        return False
         col = self.db[self.COLLECTION]
         result = await col.find_one({Ticket.Model.TICKET_ID: ticket_id})
         if result:
