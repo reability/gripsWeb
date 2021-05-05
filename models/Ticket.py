@@ -90,6 +90,7 @@ class Ticket:
         return True
 
     async def exist(self, ticket_id: int) -> bool:
+        return False
         col = self.db[self.COLLECTION]
         result = await col.find_one({Ticket.Model.TICKET_ID: ticket_id})
         if result:
