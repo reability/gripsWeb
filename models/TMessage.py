@@ -23,7 +23,7 @@ class TMessage:
         print(model.post_date)
         print(type(model.post_date))
         return "{date}\n{description}\n\n{url}".format(
-            date=datetime.fromtimestamp(model.post_date).strftime("%m/%d, %H:%M:%S"),
+            date=datetime.fromtimestamp(int(model.post_date)).strftime("%m/%d, %H:%M:%S"),
             description=model.description,
             url=model.original_url
         )
