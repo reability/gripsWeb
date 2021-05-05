@@ -17,7 +17,7 @@ routes = web.RouteTableDef()
 
 @routes.post('/ticket')
 async def post_ticket(request) -> web.Response:
-    json_data = await request.json()
+    json_data = await request.post()
     model = Ticket.model(json_data)
 
     if model:
