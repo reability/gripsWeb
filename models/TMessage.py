@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from models.Ticket import Tickets
+from models.Ticket import Ticket
 
 
 class TMessage:
