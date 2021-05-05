@@ -11,7 +11,7 @@ class TMessage:
 
     @staticmethod
     def init_from(ticket_model: Ticket.Model):
-        return TMessage(title=ticket_model.title, description="")
+        return TMessage(title=ticket_model.title, description=TMessage._description_for(ticket_model))
 
     @staticmethod
     def _description_for(model: Ticket.Model):
