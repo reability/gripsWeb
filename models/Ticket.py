@@ -41,27 +41,32 @@ class Ticket:
                 try:
                     _ticket_id = dictionary[Ticket.Model.TICKET_ID]
                 except:
-                    print("ticket")
+                    print("Decoding ticket issue")
                     return None
                 try:
                     _title = dictionary[Ticket.Model.TITLE]
                 except:
-                    print("title")
+                    print("Decoding title issue")
                     return None
                 try:
                     _description = dictionary[Ticket.Model.DESCRIPTION]
                 except:
-                    print("desct")
+                    print("Decoding description issue")
                     return None
                 try:
                     _original_url = dictionary[Ticket.Model.ORIGINAL_URL]
                 except:
-                    print("turlt")
+                    print("Decoding url issue")
                     return None
                 try:
                     _post_date = dictionary[Ticket.Model.POST_DATE]
+                    int_post_date = try_to_read(_post_date)
+                    if int_post_date:
+                        _post_date = int_post_date
+                    else:
+                        _post_date = 0
                 except:
-                    print("date")
+                    print("Decoding date issue")
                     return None
 
                 return Ticket.Model(_ticket_id, _title, _description, _original_url, _post_date)
@@ -115,3 +120,46 @@ class Ticket:
             return True
         else:
             return False
+
+# MARK: - Helpers
+
+def try_to_read(date: str):
+    date_list = date.split()
+
+    month_number = None
+    day_number = None
+
+    day_number = int(date_list[0])
+    month_str = date_list[1]
+    if "янв" in month_str:
+        month_number = 1
+    elif "фев" in month_str:
+        month_number = 2
+    elif "мар" in month_str:
+        month_number = 3
+    elif "апр" in month_str:
+        month_number = 4
+    elif "ма" in month_str:
+        month_number = 5
+    elif "июн" in month_str:
+        month_number = 6
+    elif "июл" in month_str:
+        month_number = 7
+    elif "авгу" in month_str:
+        month_number = 8
+    elif "сен" in month_str:
+        month_number = 9
+    elif "окт" in month_str:
+        month_number = 10
+    elif "ноя" in month_str:
+        month_number = 11
+    elif "дек" in month_str:
+        month_number = 12
+
+    if day_number is None or month_number is None:
+        return None
+
+    now = datetime.now()
+
+    datedate = datetime(now.year, month_number, day_number)
+    return int(datedate.timestamp())
