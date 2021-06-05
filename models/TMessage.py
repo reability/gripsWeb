@@ -24,4 +24,4 @@ class TMessage:
         )
 
     def to_str(self):
-        return "**{0}**\n\n{1}".format(self.title, self.description)
+        return "** {0} **\n\n{1}".format(self.title, self.description)

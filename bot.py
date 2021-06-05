@@ -14,8 +14,11 @@ class BotBot:
         data = self._data_for(text=message.to_str())
         result = requests.post(url, data=data)
         if result.status_code == 200:
+            print("sended", end="")
+            print(message)
             return True
         else:
+            print(result.text)
             return False
 
     def _url_for(self):
