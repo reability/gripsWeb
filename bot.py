@@ -11,8 +11,8 @@ class BotBot:
     def __init__(self):
 
         # Токен телеграмм бота который сидит в чате и имеет там админские права
-        self.token = "1638989959:AAH_bHciQUqxWv_HCSxn-0daSkkQKSI90vU"
-
+        #self.token = "1638989959:AAH_bHciQUqxWv_HCSxn-0daSkkQKSI90vU"
+        self.token = "1732226429:AAFzHE8FKJsS8u1SaAxxAmwt1jR3DWWj4IQ"
         # Номер чата в телеграмме куда отправляются данные
         self.chatId = -1001198075642
 
