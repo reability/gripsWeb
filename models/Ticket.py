@@ -128,7 +128,7 @@ def try_to_read(date: str):
     date_list = date.split()
     print("Helpers is USED!")
     print(date)
-    sys.exit(1)
+    #sys.exit(1)
     month_number = None
     day_number = None
 
