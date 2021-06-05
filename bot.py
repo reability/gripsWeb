@@ -36,7 +36,7 @@ class BotBot:
         if result.status_code == 200:
             # Сообшение успешно отправлено
             print("Sended tg", end="")
-            print(message)
+            print(message.to_str())
             return True
         else:
             # Не удалось отправить сообщение
