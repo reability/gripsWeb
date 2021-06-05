@@ -60,7 +60,12 @@ class Ticket:
                     return None
                 try:
                     _post_date = dictionary[Ticket.Model.POST_DATE]
+                    print("post_date")
+                    print(_post_date)
                     int_post_date = try_to_read(_post_date)
+                    #int_post_date = int(_post_date)
+                    print(int_post_date)
+                    print("end post date")
                     if int_post_date:
                         _post_date = int_post_date
                     else:
