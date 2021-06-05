@@ -6,6 +6,7 @@ import requests
 class BotBot:
 
     BASEURL = "https://api.telegram.org"
+    lastUpdate = datetime.now()
 
     def __init__(self):
 
@@ -30,7 +31,7 @@ class BotBot:
         result = requests.post(url, data=data)
 
         # Обновляем момент последнего апдейта телеграмм канала
-        self.lastUpdate = datetime.now()
+        BotBot.lastUpdate = datetime.now()
         if result.status_code == 200:
             # Сообшение успешно отправлено
             print("Sended tg", end="")
@@ -52,4 +53,4 @@ class BotBot:
                 }
 
     def seconds_between_requests(self, d):
-        return d.timestamp() - self.lastUpdate.timestamp()
+        return d.timestamp() - BotBot.lastUpdate.timestamp()
