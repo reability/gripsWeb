@@ -19,6 +19,7 @@ class BotBot:
             return True
         else:
             print(result.text)
+            g = 1/0
             return False
 
     def _url_for(self):
