@@ -60,18 +60,13 @@ class Ticket:
                     return None
                 try:
                     _post_date = dictionary[Ticket.Model.POST_DATE]
-                    print("post_date")
-                    print(_post_date)
                     int_post_date = try_to_read(_post_date)
-                    #int_post_date = int(_post_date)
-                    print(int_post_date)
-                    print("end post date")
                     if int_post_date:
                         _post_date = int_post_date
                     else:
                         _post_date = 0
                 except:
-                    print("Decoding date issue")
+                    print("#ERROR: Decoding date issue for data " + dictionary)
                     return None
 
                 return Ticket.Model(_ticket_id, _title, _description, _original_url, _post_date)

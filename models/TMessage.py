@@ -15,8 +15,6 @@ class TMessage:
 
     @staticmethod
     def _description_for(model: Ticket.Model):
-        print(model.post_date)
-        print(type(model.post_date))
         return "{date}\n{description}\n\n{url}".format(
             date=datetime.fromtimestamp(int(model.post_date)).strftime("%m/%d, %H:%M:%S"),
             description=model.description,
@@ -24,4 +22,4 @@ class TMessage:
         )
 
     def to_str(self):
-        return "** {0} **\n\n{1}".format(self.title, self.description)
+        return "* {0} *\n\n{1}".format(self.title, self.description)

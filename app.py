@@ -17,21 +17,25 @@ routes = web.RouteTableDef()
 
 @routes.post('/ticket')
 async def post_ticket(request) -> web.Response:
+    print("\nRecivied POST on /ticket/")
     json_data = await request.post()
-    print(json_data)
     model = Ticket.model(json_data)
-    print(model)
+    print("data to read - " + json_data)
+    print("parsed data - " + model)
 
     if model:
         ticket = Ticket(request.db)
         exist = await ticket.exist(model.ticket_id)
         if exist:
+            print("\n RESULT: 201 - EXIST")
             return web.Response(text="Already here", status=201)
         else:
             result = await ticket.save(model)
             message_to_send = TMessage.init_from(model)
             if not request.tg_bot.send(message_to_send):
+                print("\n RESULT: 502 - Failed to send: " + message_to_send + "\n\n")
                 return web.Response(text="Failed to send message", status=502)
+            print("\n RESULT: 200 - sended" + message_to_send + "\n\n")
             return web.Response(text="Success", status=200)
     else:
         web.Response(text="Decoding issue", status=501)
