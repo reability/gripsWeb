@@ -1,4 +1,5 @@
 from datetime import datetime
+import sys
 
 
 class Ticket:
@@ -41,22 +42,22 @@ class Ticket:
                 try:
                     _ticket_id = dictionary[Ticket.Model.TICKET_ID]
                 except:
-                    print("Decoding ticket issue")
+                    print("#ERROR: Decoding ticketId issue for data " + dictionary)
                     return None
                 try:
                     _title = dictionary[Ticket.Model.TITLE]
                 except:
-                    print("Decoding title issue")
+                    print("#ERROR: Decoding title issue for data " + dictionary)
                     return None
                 try:
                     _description = dictionary[Ticket.Model.DESCRIPTION]
                 except:
-                    print("Decoding description issue")
+                    print("#ERROR: Decoding description issue for data " + dictionary)
                     return None
                 try:
                     _original_url = dictionary[Ticket.Model.ORIGINAL_URL]
                 except:
-                    print("Decoding url issue")
+                    print("#ERROR: Decoding url issue for data " + dictionary)
                     return None
                 try:
                     _post_date = dictionary[Ticket.Model.POST_DATE]
@@ -125,7 +126,9 @@ class Ticket:
 
 def try_to_read(date: str):
     date_list = date.split()
-
+    print("Helpers is USED!")
+    print(date)
+    sys.exit(1)
     month_number = None
     day_number = None
 
