@@ -20,7 +20,7 @@ async def post_ticket(request) -> web.Response:
     print("\nRecivied POST on /ticket/")
     json_data = await request.post()
     model = Ticket.model(json_data)
-    print("data to read - " + json_data)
+    #print("data to read - " + json_data)
     print("parsed data - " + model)
 
     if model:
