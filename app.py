@@ -33,9 +33,9 @@ async def post_ticket(request) -> web.Response:
             result = await ticket.save(model)
             message_to_send = TMessage.init_from(model)
             if not request.tg_bot.send(message_to_send):
-                print("\n RESULT: 502 - Failed to send: " + message_to_send + "\n\n")
+                print("\n RESULT: 502 - Failed to send: " + "\n\n")
                 return web.Response(text="Failed to send message", status=502)
-            print("\n RESULT: 200 - sended" + message_to_send + "\n\n")
+            print("\n RESULT: 200 - sended" + "\n\n")
             return web.Response(text="Success", status=200)
     else:
         web.Response(text="Decoding issue", status=501)
