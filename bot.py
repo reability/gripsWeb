@@ -16,7 +16,7 @@ class BotBot:
         # Номер чата в телеграмме куда отправляются данные
         self.chatId = -1001198075642
 
-        self.lastUpdate = datetime.now()
+        BotBot.lastUpdate = datetime.now()
 
     def send(self, message):
         # Не даем отправлять сообщения в телеграмм чаше раза в секунду
@@ -24,6 +24,7 @@ class BotBot:
         time_delta = self.seconds_between_requests(datetime.now())
         if time_delta < 1.0:
             time.sleep(time_delta)
+        BotBot.lastUpdate = datetime.now()
 
         # Формируем данные для запроса на апи телеграмма и отправляем запрос
         url = self._url_for()
@@ -31,7 +32,7 @@ class BotBot:
         result = requests.post(url, data=data)
 
         # Обновляем момент последнего апдейта телеграмм канала
-        BotBot.lastUpdate = datetime.now()
+        #BotBot.lastUpdate = datetime.now()
         if result.status_code == 200:
             # Сообшение успешно отправлено
             print("Sended tg", end="")
@@ -53,4 +54,4 @@ class BotBot:
                 }
 
     def seconds_between_requests(self, d):
-        return d.timestamp() - BotBot.lastUpdate.timestamp()
+        return abs(d.timestamp() - BotBot.lastUpdate.timestamp())
