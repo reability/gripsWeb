@@ -164,5 +164,10 @@ def try_to_read(date: str):
 
     now = datetime.now()
 
-    datedate = datetime(now.year, month_number, day_number)
+    time_str = date_list[2]
+    time_array = time_str.split(":")
+    hour = int(time_array[0])
+    minutes = int(time_array[1])
+
+    datedate = datetime(now.year, month_number, day_number, hour, minutes)
     return int(datedate.timestamp())
